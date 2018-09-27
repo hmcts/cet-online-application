@@ -19,6 +19,15 @@ group = 'uk.gov.hmcts.reform.cet'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+bootJar {
+	baseName 'cet-online-application'
+	archiveName = "$baseName"+".jar"
+	destinationDir = file("$rootDir/build/libs")
+	manifest {
+		attributes 'Implementation-Title': project.name, 'Implementation-Version': project.version
+	}
+}
+
 repositories {
 	mavenCentral()
 }
