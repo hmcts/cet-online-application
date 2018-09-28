@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cet.smoke;
+package uk.gov.hmcts.reform.cet.functional;
 
 import org.junit.Test;
 

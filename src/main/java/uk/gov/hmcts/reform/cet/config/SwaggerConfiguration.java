@@ -26,15 +26,15 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/continuous-online-hearings(.*)"))
+                .paths(PathSelectors.regex("/(.*)"))
                 .build()
                 .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Continuous Online Hearing API")
-                .description("Documented API for continuous online hearing."
+                .title("Civil Enforcement Online Application API")
+                .description("Documented API for civi enforcement online application."
                         + "To use the API calls generate an Authorization JWT Tokens (user and service) which is required in the header.")
                 .version(apiVersion)
                 .build();
