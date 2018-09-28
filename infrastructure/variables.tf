@@ -1,10 +1,10 @@
 variable "product" {
   type = "string"
 }
-
-variable "shared_product_name" {
-  default = "rpa"
-}
+//
+//variable "shared_product_name" {
+//  default = "rpa"
+//}
 
 variable "component" {
   type = "string"
