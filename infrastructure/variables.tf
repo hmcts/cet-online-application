@@ -11,7 +11,7 @@ variable "component" {
 }
 
 variable "team_name" {
-  default = "coh"
+  default = "cet"
 }
 
 variable "app_language" {
@@ -65,11 +65,11 @@ variable "s2s_url" {
 }
 
 variable "postgresql_user" {
-  default = "cor"
+  default = "cet"
 }
 
 variable "database_name" {
-  default = "cor"
+  default = "cet"
 }
 ////////////////////////////////////////////////
 // Logging

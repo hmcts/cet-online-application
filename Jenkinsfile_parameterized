@@ -3,7 +3,7 @@
 properties([
         [
                 $class: 'GithubProjectProperty',
-                displayName: 'COH Continuous Online Resolution',
+                displayName: 'Civil Enforcement Online Application',
                 projectUrlStr: 'https://github.com/hmcts/cet-online-application'
         ],
 //    parameters(),
@@ -18,7 +18,7 @@ def type = "java"
 def product = "cet"
 def component = "online-application"
 
-def channel = '#coh-pipeline'
+def channel = '#cet-pipeline'
 
 List<LinkedHashMap<String, Object>> secrets = [
         secret('cet-s2s-token', 'S2S_TOKEN')
