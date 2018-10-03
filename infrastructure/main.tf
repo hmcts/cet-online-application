@@ -73,16 +73,16 @@ module "db" {
   storage_mb = "51200"
   common_tags  = "${var.common_tags}"
 }
-
-data "azurerm_key_vault" "shared_key_vault" {
-  name = "${local.shared_vault_name}"
-  resource_group_name = "${local.shared_vault_name}"
-}
-
-data "azurerm_key_vault_secret" "s2s_secret" {
-  name = "cet-s2s-token"
-  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
-}
+//
+//data "azurerm_key_vault" "shared_key_vault" {
+//  name = "${local.shared_vault_name}"
+//  resource_group_name = "${local.shared_vault_name}"
+//}
+//
+//data "azurerm_key_vault_secret" "s2s_secret" {
+//  name = "cet-s2s-token"
+//  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
+//}
 
 //data "azurerm_key_vault_secret" "oauth2_secret" {
 //  name = "cet-oauth2-token"
