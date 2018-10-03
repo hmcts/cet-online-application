@@ -2,7 +2,7 @@ locals {
   app_full_name = "${var.product}-${var.component}"
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
-  shared_vault_name = "${var.shared_product_name}-${local.local_env}"
+#  shared_vault_name = "${var.shared_product_name}-${local.local_env}"
 }
 # "${local.ase_name}"
 # "${local.app_full_name}"
@@ -20,8 +20,8 @@ module "app" {
   additional_host_name = "${local.app_full_name}-${var.env}.service.${var.env}.platform.hmcts.net"
   https_only="false"
   common_tags  = "${var.common_tags}"
-  asp_rg = "${var.shared_product_name}-${var.env}"
-  asp_name = "${var.shared_product_name}-${var.env}"
+#  asp_rg = "${var.shared_product_name}-${var.env}"
+#  asp_name = "${var.shared_product_name}-${var.env}"
 
   app_settings = {
     POSTGRES_HOST = "${module.db.host_name}"
