@@ -79,6 +79,7 @@ module "db" {
 
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
+  resource_group_name = "${local.vaultName}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
