@@ -132,3 +132,7 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   value = "${module.db.postgresql_database}"
   vault_uri = "${module.local_key_vault.key_vault_uri}"
 }
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.component}-${var.env}"
+location = "${var.location}"
+}
