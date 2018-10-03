@@ -2,7 +2,10 @@ locals {
   app_full_name = "${var.product}-${var.component}"
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
-#  shared_vault_name = "${var.shared_product_name}-${local.local_env}"
+
+  previewVaultName = "${var.raw_product}-aat"
+  nonPreviewVaultName = "${var.raw_product}-${var.env}"
+  vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 }
 # "${local.ase_name}"
 # "${local.app_full_name}"
@@ -73,17 +76,16 @@ module "db" {
   storage_mb = "51200"
   common_tags  = "${var.common_tags}"
 }
-//
-//data "azurerm_key_vault" "shared_key_vault" {
-//  name = "${local.shared_vault_name}"
-//  resource_group_name = "${local.shared_vault_name}"
-//}
-//
-//data "azurerm_key_vault_secret" "s2s_secret" {
-//  name = "cet-s2s-token"
-//  vault_uri = "${data.azurerm_key_vault.key_vault.vault_uri}"
-//}
 
+data "azurerm_key_vault" "cet_key_vault" {
+  name = "${local.vaultName}"
+}
+
+data "azurerm_key_vault_secret" "s2s_secret" {
+  name = "cet-s2s-token"
+  vault_uri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
+}
+//
 //data "azurerm_key_vault_secret" "oauth2_secret" {
 //  name = "cet-oauth2-token"
 //  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"

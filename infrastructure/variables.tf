@@ -1,10 +1,13 @@
 variable "product" {
   type = "string"
 }
-//
-//variable "shared_product_name" {
-//  default = "rpa"
-//}
+variable "raw_product" {
+  default = "cet" // jenkins-library overrides product for PRs and adds e.g. pr-118-cmc
+}
+
+variable "microservice" {
+  default = "online-application"
+}
 
 variable "component" {
   type = "string"
