@@ -77,7 +77,6 @@ module "db" {
   common_tags  = "${var.common_tags}"
 }
 
-
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
 //  resource_group_name = "${local.vaultName}"
