@@ -104,7 +104,7 @@ module "local_key_vault" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-${var.env}"
+  name     = "${var.raw_product}-aat" #//"${var.product}-${var.env}"
   location = "${var.location}"
 }
 
