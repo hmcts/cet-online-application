@@ -77,9 +77,11 @@ module "db" {
   common_tags  = "${var.common_tags}"
 }
 
+
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
-  resource_group_name = "${local.vaultName}"
+//  resource_group_name = "${local.vaultName}"
+  resource_group_name = "${azurerm_resource_group.rg.name}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
@@ -93,7 +95,7 @@ data "azurerm_key_vault_secret" "s2s_secret" {
 //}
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-${var.env}"
+  name     = "${var.product}-online-app-${var.env}"
   location = "${var.location}"
 }
 
