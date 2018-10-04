@@ -79,7 +79,8 @@ module "db" {
 
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
-  resource_group_name = "${local.vaultName}"
+  resource_group_name = "${module.app.resource_group_name}"
+  //  resource_group_name = "${local.vaultName}"
 //  resource_group_name = "${azurerm_resource_group.rg.name}"
 }
 
