@@ -92,9 +92,14 @@ data "azurerm_key_vault_secret" "s2s_secret" {
 //  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
 //}
 
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.env}"
+  location = "${var.location}"
+}
+
 module "local_key_vault" {
   source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  name = "${var.product}-online-app-${var.env}"
+  //name = "${var.product}-online-app-${var.env}"
   product = "${local.app_full_name}"
   env = "${var.env}"
   tenant_id = "${var.tenant_id}"
@@ -104,11 +109,6 @@ module "local_key_vault" {
   product_group_object_id = "5d9cd025-a293-4b97-a0e5-6f43efce02c0"
 }
 
-resource "azurerm_resource_group" "rg" {
-  //name     = "${var.raw_product}-aat"
-  name     = "${var.product}-${var.env}"
-  location = "${var.location}"
-}
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
   name = "${local.app_full_name}-POSTGRES-USER"

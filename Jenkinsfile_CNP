@@ -16,7 +16,7 @@ properties([
 
 def type = "java"
 def product = "cet"
-def component = "online-application"
+def component = "online-app"
 
 def channel = '#cet-pipeline'
 
