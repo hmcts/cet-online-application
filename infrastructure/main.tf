@@ -3,8 +3,8 @@ locals {
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
-  previewVaultName = "${app_full_name}-aat"
-  nonPreviewVaultName = "${app_full_name}-${var.env}"
+  previewVaultName = "${local.app_full_name}-aat"
+  nonPreviewVaultName = "${local.app_full_name}-${var.env}"
   vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 }
 # "${local.ase_name}"
