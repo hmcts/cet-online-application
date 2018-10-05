@@ -3,8 +3,8 @@ locals {
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
 
-  previewVaultName = "${var.raw_product}-aat"
-  nonPreviewVaultName = "${var.raw_product}-${var.env}"
+  previewVaultName = "${app_full_name}-aat"
+  nonPreviewVaultName = "${app_full_name}-${var.env}"
   vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 }
 # "${local.ase_name}"
@@ -79,8 +79,7 @@ module "db" {
 
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
-  //resource_group_name = "${module.app.resource_group_name}"
-  resource_group_name = "${local.vaultName}"
+  resource_group_name = "${module.app.resource_group_name}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
