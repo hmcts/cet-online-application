@@ -1,6 +1,6 @@
 Civil Enforcement Online Application
 
-cet-online-app
+cet-online-application
 
 
 To run in docker

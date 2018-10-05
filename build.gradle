@@ -79,7 +79,7 @@ dependencies {
 }
 
 bootJar {
-	baseName 'cet-online-app'
+	baseName 'cet-online-application'
 	archiveName = "$baseName"+".jar"
 	destinationDir = file("$rootDir/build/libs")
 	manifest {
