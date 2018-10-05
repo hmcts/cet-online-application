@@ -6,7 +6,7 @@ variable "raw_product" {
 }
 
 variable "microservice" {
-  default = "online-application"
+  default = "online-app"
 }
 
 variable "component" {

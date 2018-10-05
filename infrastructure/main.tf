@@ -80,8 +80,6 @@ module "db" {
 data "azurerm_key_vault" "cet_key_vault" {
   name = "${local.vaultName}"
   resource_group_name = "${module.app.resource_group_name}"
-  //  resource_group_name = "${local.vaultName}"
-  //  resource_group_name = "${azurerm_resource_group.rg.name}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
@@ -101,13 +99,11 @@ resource "azurerm_resource_group" "rg" {
 
 module "local_key_vault" {
   source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  //name = "${var.product}-online-app-${var.env}"
   product = "${local.app_full_name}"
   env = "${var.env}"
   tenant_id = "${var.tenant_id}"
   object_id = "${var.jenkins_AAD_objectId}"
   resource_group_name = "${module.app.resource_group_name}"
-  //resource_group_name = "${azurerm_resource_group.rg.name}"
   product_group_object_id = "5d9cd025-a293-4b97-a0e5-6f43efce02c0"
 }
 
