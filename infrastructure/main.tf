@@ -104,7 +104,7 @@ module "local_key_vault" {
   tenant_id = "${var.tenant_id}"
   object_id = "${var.jenkins_AAD_objectId}"
   resource_group_name = "${module.app.resource_group_name}"
-  product_group_object_id = "a371698d-8442-4d06-a6d8-f229cc448d3e"
+  product_group_object_id = "5d9cd025-a293-4b97-a0e5-6f43efce02c0"
 }
 
 
