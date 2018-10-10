@@ -6,7 +6,8 @@ locals {
   previewVaultName = "${local.app_full_name}-aat"
   nonPreviewVaultName = "${local.app_full_name}-${var.env}"
   vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
-  vaultUri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
+  #vaultUri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
+  s2s_vault_url = "https://s2s-${local.local_env}.vault.azure.net/"
 }
 # "${local.ase_name}"
 # "${local.app_full_name}"

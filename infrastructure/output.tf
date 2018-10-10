@@ -10,7 +10,7 @@ output "vaultName" {
 
 // used for grabing shared secrects (shown in the jenkins file)
 output "vaultUri" {
-  value = "${local.vaultUri}"
+  value = "${local.s2s_vault_url}"
 }
 
 output "idam_api_url" {
