@@ -83,11 +83,11 @@ data "azurerm_key_vault" "cet_key_vault" {
   resource_group_name = "${module.app.resource_group_name}"
 }
 
-//data "azurerm_key_vault_secret" "s2s_secret" {
-//  name = "cet-s2s-token"
-//  vault_uri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
-//}
-//
+data "azurerm_key_vault_secret" "s2s_secret" {
+  name = "cet-s2s-token"
+  vault_uri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
+}
+
 //data "azurerm_key_vault_secret" "oauth2_secret" {
 //  name = "cet-oauth2-token"
 //  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
