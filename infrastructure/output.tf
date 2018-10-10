@@ -9,9 +9,9 @@ output "vaultName" {
 }
 
 // used for grabing shared secrects (shown in the jenkins file)
-//output "vaultUri" {
-//  value = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
-//}
+output "vaultUri" {
+  value = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
+}
 
 output "idam_api_url" {
   value = "http://${var.idam_api_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
