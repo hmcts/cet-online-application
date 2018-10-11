@@ -113,4 +113,12 @@
         <cve>CVE-2018-1336</cve>
     </suppress>
 
+    <suppress>
+        <notes><![CDATA[
+   relates to CORS
+   ]]></notes>
+        <gav regex="true">.*</gav>
+        <cve>CVE-2018-8034</cve>
+    </suppress>
+
 </suppressions>
