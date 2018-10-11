@@ -50,6 +50,8 @@ module "app" {
     IDAM_API_BASE_URI = "${var.idam_api_url}"
     S2S_BASE_URI = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
 
+    S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
+
     # logging vars & healthcheck
     REFORM_SERVICE_NAME = "${local.app_full_name}"
     REFORM_TEAM = "${var.team_name}"
@@ -77,6 +79,10 @@ module "db" {
   sku_tier = "GeneralPurpose"
   storage_mb = "51200"
   common_tags  = "${var.common_tags}"
+}
+data "azurerm_key_vault_secret" "s2s_key" {
+  name      = "microservicekey-cet"
+  vault_uri = "https://s2s-${var.env}.vault.azure.net/"
 }
 
 data "azurerm_key_vault" "cet_key_vault" {
