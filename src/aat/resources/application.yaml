@@ -14,8 +14,8 @@ spring:
           use_jdbc_metadata_defaults: false
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/cet}
-    username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD:user}
+    username: ${SPRING_DATASOURCE_USERNAME:cet}
+    password: ${SPRING_DATASOURCE_PASSWORD:cet}
     platform: postgresql
     tomcat:
       max-active: ${MAX_ACTIVE_DB_CONNECTIONS:50} # Maximum number of active connections that can be allocated from this pool at the same time.

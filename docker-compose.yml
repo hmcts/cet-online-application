@@ -1,0 +1,41 @@
+version: '2.1'
+
+services:
+
+  cet-onlineapp:
+    build:
+      context: .
+#    image: hmcts/cet-onlineapp:latest
+    environment:
+      - SERVER_PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cet-db:5432/cet
+      - SPRING_DATASOURCE_USERNAME=cet
+      - SPRING_DATASOURCE_PASSWORD=cet
+      - IDAM_API_URL=http://idam-api:8080
+      - S2S_URL=http://service-auth-provider-app:8489
+      - APPINSIGHTS_INSTRUMENTATIONKEY=test_app
+    # these environment variables are used by java-logging library
+      - ROOT_APPENDER=JSON_CONSOLE
+      - JSON_CONSOLE_PRETTY_PRINT=false
+      - ROOT_LOGGING_LEVEL
+      - REFORM_SERVICE_TYPE=java
+      - REFORM_SERVICE_NAME=cet-onlineapp
+      - REFORM_TEAM=cet
+      - REFORM_ENVIRONMENT=docker
+    links:
+     - cet-db
+    depends_on:
+     - cet-db
+    ports:
+    - $SERVER_PORT:8080
+    - "7005:7005"
+
+  cet-db:
+    image: postgres
+    environment:
+     - POSTGRES_USER=cet
+     - POSTGRES_PASSWORD=cet
+     - POSTGRES_DB=cet
+
+    ports:
+     - "5432:5432"
