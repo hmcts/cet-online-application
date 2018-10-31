@@ -64,25 +64,24 @@ management:
        enabled: true # Whether to enable git info.
        mode: simple # Mode to use to expose git information.
 
-#auth:
-#  idam:
-#    client:
-#      baseUrl: ${IDAM_USER_BASE_URI:http://localhost:4501}
-#  provider:
-#    service:
-#      client:
-#        baseUrl: ${S2S_BASE_URI:http://localhost:4502}
-#
-#
-#authorization:
-#  idam-roles-whitelist: ${IDAM_ROLES_WHITELIST:solicitor}
-#  s2s-names-whitelist: ${S2S_NAMES_WHITELIST:sscs,divorce,ccd,em_gw}
-#
+auth:
+  idam:
+    client:
+      baseUrl: ${IDAM_API_URL:http://localhost:4501}
+  provider:
+    service:
+      client:
+        baseUrl: ${S2S_URL:http://localhost:4502}
+
+authorization:
+    roles: ${AUTHORIZATION_ROLES:caseworker-cmc,citizen}
+    s2s-names-whitelist: ${S2S_NAMES_WHITELIST:cmc}
+
 info:
   app:
     environment: ${PACKAGES_ENVIRONMENT:local}
     project: ${PACKAGES_PROJECT:cet}
-    name: ${PACKAGES_NAME:online-application}
+    name: ${PACKAGES_NAME:onlineapp}
 #    version: ${PACKAGES_VERSION:unknown}
 
 azure:
