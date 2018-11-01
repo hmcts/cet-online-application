@@ -93,7 +93,9 @@ bootJar {
 
 def coverageExclusionList = [
 		'**uk/gov/hmcts/reform/cet/Application*',
+		'**uk/gov/hmcts/reform/cet/actuate/*',
 		'**uk/gov/hmcts/reform/cet/appinsights/*',
+		'**uk/gov/hmcts/reform/cet/config/*',
 		'**uk/gov/hmcts/reform/cet/domain/*',
 ]
 
