@@ -4,9 +4,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("/civil-enforcement")
 public class HelloController {
-    
-    @RequestMapping("/")
+
+    @RequestMapping("")
     public String greet() {
         return "Greetings from Civil Enforcement!";
     }
