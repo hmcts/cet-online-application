@@ -98,3 +98,9 @@ app-insights:
 #toggle:
 #  includeidamhealth: ${ENABLE_IDAM_HEALTH_CHECK:false}
 #  includes2shealth: ${ENABLE_S2S_HEALTH_CHECK:false}
+
+idam:
+  s2s-auth:
+    url: ${S2S_URL:http://localhost:4502}
+    microservice: cet
+    totp_secret: ${S2S_TOKEN:AAAAAAAAAAAAAAAA}
