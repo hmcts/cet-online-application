@@ -68,7 +68,7 @@ variable "s2s_url" {
 }
 
 variable "s2s_names_whitelist" {
-  default = "cmc"
+  default = "cmc,jui_webapp"
   description = "Comma-separated list of service identifiers from S2S."
 }
 
