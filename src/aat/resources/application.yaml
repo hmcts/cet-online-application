@@ -38,13 +38,12 @@ info:
   app:
     environment: ${PACKAGES_ENVIRONMENT:local}
     project: ${PACKAGES_PROJECT:cet}
-    name: ${PACKAGES_NAME:online-application}
+    name: ${PACKAGES_NAME:online-app}
 
 azure:
   app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:true}
   application-insights:
     instrumentation-key: ${APPINSIGHTS_INSTRUMENTATIONKEY:dummy}
-
 
 idam:
   s2s-auth:
