@@ -32,6 +32,11 @@ public class JsonUtilsTest {
         assertTrue(testFile.exists());
     }
 
+    @Test(expected = FileNotFoundException.class)
+    public void testFileNotFound() throws FileNotFoundException {
+        JsonUtils.getTestFile("util/idontexist");
+    }
+
     @Test
     public void testGetJsonInput() throws Exception  {
         String testContent = JsonUtils.getJsonInput("util/dummy");

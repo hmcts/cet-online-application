@@ -37,11 +37,15 @@ public class JsonUtils {
 
     public static File getTestFile(String testName) throws FileNotFoundException {
         String filename = "json/" + testName + ".json";
-        File file = new File(Objects.requireNonNull(classLoader.getResource(filename)).getFile());
 
-        if (!file.exists()) {
-            throw new FileNotFoundException("Unable to find file " + filename);
+        File file;
+
+        try {
+            file = new File(Objects.requireNonNull(classLoader.getResource(filename)).getFile());
+        } catch (Exception e) {
+            throw new FileNotFoundException("Unable to get file " + filename);
         }
+
         return file;
     }
 }
