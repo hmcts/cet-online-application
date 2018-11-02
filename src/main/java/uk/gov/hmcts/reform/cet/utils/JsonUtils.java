@@ -35,7 +35,7 @@ public class JsonUtils {
         return mapper.writeValueAsString(obj);
     }
 
-    private static File getTestFile(String testName) throws FileNotFoundException {
+    public static File getTestFile(String testName) throws FileNotFoundException {
         String filename = "json/" + testName + ".json";
         File file = new File(Objects.requireNonNull(classLoader.getResource(filename)).getFile());
 
