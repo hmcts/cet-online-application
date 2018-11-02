@@ -28,9 +28,9 @@ spring:
    change-log: classpath:/db/changelog/db.changelog-master.yam
 
 base-urls:
-  idam-user: ${IDAM_API_URL:http://localhost:4501}
-  idam-s2s: ${S2S_URL:http://localhost:4502}
-  s2s-token: ${S2S_TOKEN:AAAAAAAAAAAAAAAA}
+  idam-url: ${IDAM_API_URL:http://localhost:4501}
+  idam-user-email: ${IDAM_USER_EMAIL:test-citizen@example.com}
+  idam-user-role: ${IDAM_API_USER_ROLE:citizen}
   test-url: ${TEST_URL:http://localhost:8080}
 
 #this need to be removed
@@ -45,8 +45,9 @@ azure:
   application-insights:
     instrumentation-key: ${APPINSIGHTS_INSTRUMENTATIONKEY:dummy}
 
+
 idam:
   s2s-auth:
     url: ${S2S_URL:http://localhost:4502}
-    microservice: cet
-    totp_secret: ${S2S_TOKEN:AAAAAAAAAAAAAAAA}
+    microservice: ${TEST_S2S_SERVICE:jui_webapp}
+    totp_secret: ${TEST_S2S_TOKEN:AAAAAAAAAAAAAAAA}
