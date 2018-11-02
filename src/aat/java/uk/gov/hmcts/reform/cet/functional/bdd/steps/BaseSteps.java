@@ -169,7 +169,7 @@ public class BaseSteps {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(body, headers);
-        ResponseEntity<String> idamResponse = new RestTemplate()
+        ResponseEntity<String> idamResponse = restTemplate
             .postForEntity(idamUrl + "/testing-support/lease", request, String.class);
 
         if (idamResponse.hasBody()) {
