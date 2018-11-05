@@ -48,5 +48,5 @@ azure:
 idam:
   s2s-auth:
     url: ${S2S_URL:http://localhost:4502}
-    microservice: ${TEST_S2S_SERVICE:jui_webapp}
-    totp_secret: ${TEST_S2S_SECRET:AAAAAAAAAAAAAAAA}
+    microservice: ${TEST_S2S_SERVICE}
+    totp_secret: ${TEST_S2S_SECRET}
