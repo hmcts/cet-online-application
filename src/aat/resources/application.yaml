@@ -49,4 +49,4 @@ idam:
   s2s-auth:
     url: ${S2S_URL:http://localhost:4502}
     microservice: ${TEST_S2S_SERVICE:jui_webapp}
-    totp_secret: ${TEST_S2S_TOKEN:AAAAAAAAAAAAAAAA}
+    totp_secret: ${TEST_S2S_SECRET:AAAAAAAAAAAAAAAA}
