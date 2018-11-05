@@ -20,6 +20,19 @@ def component = "online-app"
 
 def channel = '#cet-pipeline'
 
+List<LinkedHashMap<String, Object>> secrets = [
+        secret('cet-s2s-token', 'TEST_S2S_TOKEN')
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [ $class: 'AzureKeyVaultSecret',
+      secretType: 'Secret',
+      name: secretName,
+      version: '',
+      envVariable: envVar
+    ]
+}
+
 withPipeline(type , product, component) {
     enableSlackNotifications(channel)
     enableDbMigration()
