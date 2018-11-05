@@ -9,7 +9,7 @@ locals {
   #vaultUri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
   s2s_vault_url = "https://s2s-${local.local_env}.vault.azure.net/"
   local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
-  s2s_url = "http://${var.s2s_url}}-${local.local_env}.service.${local.local_ase}.internal"
+  s2s_url = "http://${var.s2s_url}-${local.local_env}.service.${local.local_ase}.internal"
 }
 # "${local.ase_name}"
 # "${local.app_full_name}"
