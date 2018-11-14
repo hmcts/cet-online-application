@@ -1,6 +1,11 @@
 variable "product" {
   type = "string"
 }
+
+variable "shared_product_name" {
+  default = "cet"
+}
+
 variable "raw_product" {
   default = "cet" // jenkins-library overrides product for PRs and adds e.g. pr-118-cmc
 }
