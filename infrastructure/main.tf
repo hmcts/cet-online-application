@@ -69,8 +69,6 @@ module "app" {
     ROOT_APPENDER = "${var.root_appender}"
     JSON_CONSOLE_PRETTY_PRINT = "${var.json_console_pretty_print}"
     LOG_OUTPUT = "${var.log_output}"
-
-    FORCE_CHANGE = "delete me"
   }
 }
 
@@ -105,11 +103,11 @@ data "azurerm_key_vault" "cet_key_vault" {
 //  name = "cet-oauth2-token"
 //  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
 //}
-//
-//resource "azurerm_resource_group" "rg" {
-//  name     = "${var.product}-online-app-${var.env}"
-//  location = "${var.location}"
-//}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-online-app-${var.env}"
+  location = "${var.location}"
+}
 
 module "local_key_vault" {
   source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
