@@ -70,7 +70,7 @@ module "app" {
     JSON_CONSOLE_PRETTY_PRINT = "${var.json_console_pretty_print}"
     LOG_OUTPUT = "${var.log_output}"
 
-    FORCE_CHANGE = "delete me"
+//    FORCE_CHANGE = "delete me"
   }
 }
 
