@@ -67,7 +67,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-8014</cve>
@@ -75,7 +75,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-1258</cve>
@@ -83,7 +83,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-1257</cve>
@@ -91,7 +91,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-11039</cve>
@@ -99,7 +99,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-11040</cve>
@@ -107,7 +107,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-1336</cve>
@@ -115,7 +115,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-8034</cve>
@@ -123,7 +123,7 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-8037</cve>
@@ -131,9 +131,17 @@
 
     <suppress>
         <notes><![CDATA[
-   relates to CORS
+   relates to CETS
    ]]></notes>
         <gav regex="true">.*</gav>
         <cve>CVE-2018-1000632</cve>
+    </suppress>
+
+    <suppress>
+        <notes><![CDATA[
+   relates to CETS
+   ]]></notes>
+        <gav regex="true">.*</gav>
+        <cve>CVE-2018-10237</cve>
     </suppress>
 </suppressions>
