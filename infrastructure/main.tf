@@ -106,10 +106,26 @@ data "azurerm_key_vault" "cet_key_vault" {
 //  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
 //}
 //
-//resource "azurerm_resource_group" "rg" {
-//  name     = "${var.product}-online-app-${var.env}"
-//  location = "${var.location}"
-//}
+
+variable "team_contact" {
+  default     = "#cet"
+  description = "Slack channel team can be reached on for support"
+}
+
+locals {
+  tags = "${merge(
+    var.common_tags,
+    map(
+      "Team Contact", var.team_contact
+    )
+  )}"
+}
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.env}"
+  location = "${var.location}"
+
+  tags = "${local.tags}"
+}
 
 module "local_key_vault" {
   source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
