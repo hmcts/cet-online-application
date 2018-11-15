@@ -91,10 +91,11 @@ data "azurerm_key_vault_secret" "s2s_key" {
   vault_uri = "https://s2s-${var.env}.vault.azure.net/"
 }
 
-data "azurerm_key_vault" "cet_key_vault" {
-  name = "${local.vaultName}"
-  resource_group_name = "${module.app.resource_group_name}"
+data "azurerm_key_vault" "shared_key_vault" {
+  name = "${local.shared_vault_name}"
+  resource_group_name = "${local.shared_vault_name}"
 }
+
 //
 //data "azurerm_key_vault_secret" "s2s_secret" {
 //  name = "cet-s2s-token"
