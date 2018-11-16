@@ -121,12 +121,6 @@ locals {
     )
   )}"
 }
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-${var.env}"
-  location = "${var.location}"
-
-  tags = "${local.tags}"
-}
 
 module "local_key_vault" {
   source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
