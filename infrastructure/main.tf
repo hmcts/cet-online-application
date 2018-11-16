@@ -102,27 +102,6 @@ data "azurerm_key_vault_secret" "s2s_key" {
   vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
 }
 
-data "azurerm_key_vault" "cet_key_vault" {
-  name = "${local.vaultName}"
-  resource_group_name = "${module.app.resource_group_name}"
-}
-//
-//data "azurerm_key_vault_secret" "s2s_secret" {
-//  name = "cet-s2s-token"
-//  vault_uri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
-//}
-
-//data "azurerm_key_vault_secret" "oauth2_secret" {
-//  name = "cet-oauth2-token"
-//  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
-//}
-
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-online-app-${var.env}"
-  location = "${var.location}"
-  vault_uri = "${local.s2s_vault_url}"
-}
-
 module "cet-online-app-vault" {
   source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
   name                = "${local.vaultName}"
