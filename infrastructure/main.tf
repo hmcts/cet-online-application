@@ -130,7 +130,7 @@ module "cet-online-app-vault" {
   env                 = "${var.env}"
   tenant_id           = "${var.tenant_id}"
   object_id           = "${var.jenkins_AAD_objectId}"
-  resource_group_name = "${module.cet-online-app-vault.resource_group_name}"
+  resource_group_name = "${module.app.resource_group_name}"
   product_group_object_id = "a371698d-8442-4d06-a6d8-f229cc448d3e"
 }
 
