@@ -110,7 +110,7 @@ module "cet-online-app-vault" {
   tenant_id           = "${var.tenant_id}"
   object_id           = "${var.jenkins_AAD_objectId}"
   resource_group_name = "${module.app.resource_group_name}"
-  product_group_object_id = "a371698d-8442-4d06-a6d8-f229cc448d3e"
+  product_group_object_id = "33ed3c5a-bd38-4083-84e3-2ba17841e31e"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
