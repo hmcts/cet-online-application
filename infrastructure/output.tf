@@ -3,14 +3,12 @@ output "microserviceName" {
   value = "${local.app_full_name}"
 }
 
-// used for db migrations
-output "vaultName" {
-  value = "${module.local_key_vault.key_vault_name}"
+output "vaultUri" {
+  value = "${local.vaultUri}"
 }
 
-// used for grabing shared secrects (shown in the jenkins file)
-output "vaultUri" {
-  value = "${local.s2s_vault_url}"
+output "vaultName" {
+  value = "${local.vaultName}"
 }
 
 output "idam_api_url" {

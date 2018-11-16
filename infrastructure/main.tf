@@ -3,7 +3,22 @@ locals {
   ase_name = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   local_env = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
   shared_vault_name = "${var.shared_product_name}-${local.local_env}"
+
+  previewVaultName = "${local.app_full_name}-aat"
+  nonPreviewVaultName = "${local.app_full_name}-${var.env}"
+  vaultName = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
+
+  nonPreviewVaultUri = "${module.cet-online-app-vault.key_vault_uri}"
+  previewVaultUri = "https://cet-online-app-aat.vault.azure.net/"
+  vaultUri = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultUri : local.nonPreviewVaultUri}"
+
+  previewEnv= "aat"
+  nonPreviewEnv = "${var.env}"
+  localenv = "${(var.env == "preview" || var.env == "spreview") ? local.previewEnv : local.nonPreviewEnv}"
+
   s2s_vault_url = "https://s2s-${local.local_env}.vault.azure.net/"
+  local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
+  s2s_url = "http://${var.s2s_url}-${local.local_env}.service.${local.local_ase}.internal"
 }
 
 module "app" {
@@ -43,7 +58,7 @@ module "app" {
     IDAM_API_URL = "${var.idam_api_url}"
     S2S_URL = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
 
-    S2S_KEY = "${data.azurerm_key_vault_secret.s2s_secret.value}"
+    S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
     S2S_NAMES_WHITELIST = "${var.s2s_names_whitelist}"
 
     # logging vars & healthcheck
@@ -82,47 +97,75 @@ data "azurerm_key_vault" "shared_key_vault" {
   resource_group_name = "${local.shared_vault_name}"
 }
 
-data "azurerm_key_vault_secret" "s2s_secret" {
+data "azurerm_key_vault_secret" "s2s_key" {
   name      = "microservicekey-cet"
+  vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
+}
+
+data "azurerm_key_vault" "cet_key_vault" {
+  name = "${local.vaultName}"
+  resource_group_name = "${module.app.resource_group_name}"
+}
+//
+//data "azurerm_key_vault_secret" "s2s_secret" {
+//  name = "cet-s2s-token"
+//  vault_uri = "${data.azurerm_key_vault.cet_key_vault.vault_uri}"
+//}
+
+//data "azurerm_key_vault_secret" "oauth2_secret" {
+//  name = "cet-oauth2-token"
+//  vault_uri = "${data.azurerm_key_vault.shared_key_vault.vault_uri}"
+//}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-online-app-${var.env}"
+  location = "${var.location}"
   vault_uri = "${local.s2s_vault_url}"
 }
 
-module "local_key_vault" {
-  source = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
-  product = "${local.app_full_name}"
-  env = "${var.env}"
-  tenant_id = "${var.tenant_id}"
-  object_id = "${var.jenkins_AAD_objectId}"
-  resource_group_name = "${module.app.resource_group_name}"
+module "cet-online-app-vault" {
+  source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
+  name                = "${local.vaultName}"
+  product             = "${var.product}"
+  env                 = "${var.env}"
+  tenant_id           = "${var.tenant_id}"
+  object_id           = "${var.jenkins_AAD_objectId}"
+  resource_group_name = "${module.cet-online-app-vault.resource_group_name}"
   product_group_object_id = "a371698d-8442-4d06-a6d8-f229cc448d3e"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
   name = "${local.app_full_name}-POSTGRES-USER"
   value = "${module.db.user_name}"
-  vault_uri = "${module.local_key_vault.key_vault_uri}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-PASS" {
   name = "${local.app_full_name}-POSTGRES-PASS"
   value = "${module.db.postgresql_password}"
-  vault_uri = "${module.local_key_vault.key_vault_uri}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_HOST" {
   name = "${local.app_full_name}-POSTGRES-HOST"
   value = "${module.db.host_name}"
-  vault_uri = "${module.local_key_vault.key_vault_uri}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_PORT" {
   name = "${local.app_full_name}-POSTGRES-PORT"
   value = "${module.db.postgresql_listen_port}"
-  vault_uri = "${module.local_key_vault.key_vault_uri}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
   name = "${local.app_full_name}-POSTGRES-DATABASE"
   value = "${module.db.postgresql_database}"
-  vault_uri = "${module.local_key_vault.key_vault_uri}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
+}
+
+resource "azurerm_key_vault_secret" "S2S_KEY" {
+  name = "${data.azurerm_key_vault_secret.s2s_key.name}"
+  value = "${data.azurerm_key_vault_secret.s2s_key.value}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
