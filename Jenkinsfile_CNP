@@ -23,8 +23,4 @@ def channel = '#cet-pipeline'
 withPipeline(type , product, component) {
     enableSlackNotifications(channel)
     enableDbMigration()
-
-    before('buildinfra:prod') {
-        error('Halting pipeline before prod stages')
-    }
 }
