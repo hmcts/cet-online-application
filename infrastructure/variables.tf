@@ -68,6 +68,10 @@ variable "idam_api_url" {
   default = "https://preprod-idamapi.reform.hmcts.net:3511"
 }
 
+variable "pdf_service_url" {
+  default = "cmc-pdf-service"
+}
+
 variable "s2s_url" {
   default = "rpe-service-auth-provider"
 }

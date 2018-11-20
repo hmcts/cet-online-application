@@ -18,6 +18,7 @@ locals {
 
   s2s_vault_url = "https://s2s-${local.local_env}.vault.azure.net/"
   local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
+  pdf_service_url = "http://${var.pdf_service_url}-${local.local_env}.service.${local.local_ase}.internal"
   s2s_url = "http://${var.s2s_url}-${local.local_env}.service.${local.local_ase}.internal"
 }
 
@@ -56,6 +57,7 @@ module "app" {
 
     # idam
     IDAM_API_URL = "${var.idam_api_url}"
+    PDF_SERVICE_URL = "http://${var.pdf_service_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
     S2S_URL = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
 
     S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"

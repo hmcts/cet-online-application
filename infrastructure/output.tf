@@ -15,6 +15,10 @@ output "idam_api_url" {
   value = "${var.idam_api_url}"
 }
 
+output "pdf_service_url" {
+  value = "http://${var.pdf_service_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
+}
+
 output "s2s_url" {
   value = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
 }
