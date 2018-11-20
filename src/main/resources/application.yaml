@@ -27,6 +27,10 @@ spring:
    enabled: ${ENABLE_DB_MIGRATE:true}
    change-log: classpath:/db/changelog/db.changelog-master.yaml
 
+pdf-service:
+  url: ${PDF_SERVICE_URL:http://localhost:5500}
+  writ-template-location: classpath:templates/writ-control-example-template.html
+
 base-urls:
   idam-user: ${IDAM_API_URL:http://localhost:4501}
   idam-s2s: ${S2S_URL:http://localhost:4502}
