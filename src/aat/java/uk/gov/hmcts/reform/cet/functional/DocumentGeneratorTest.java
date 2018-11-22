@@ -1,5 +1,9 @@
 package uk.gov.hmcts.reform.cet.functional;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.springframework.util.Base64Utils.encodeToString;
+
 import uk.gov.hmcts.reform.cet.document.ClientFactory;
 import uk.gov.hmcts.reform.cet.document.DocumentGenerator;
 
@@ -50,10 +54,19 @@ public class DocumentGeneratorTest {
         templateData.put("applicantName", "Wilkin Chapman LLP");
         templateData.put("applicantAddress", "Cartergate House, 26 Chantry Lane, Grimsby, DN3 1LJ");
 
+
         byte[] pdfBytes = documentGenerator.generateWritDocument(templateData);
 
-        Path path = Paths.get("writ-of-control.pdf");
-        Files.write(path, pdfBytes);
+        assertNotNull(pdfBytes);
+
+        Path expectedContentPath = Paths.get("src/aat/resources/base64EncodedContentString.txt");
+        String expectedPdfContent = new String(Files.readAllBytes(expectedContentPath));
+
+        assertEquals(encodeToString(pdfBytes).length(), expectedPdfContent.length());
+
+        int comparisonRange = expectedPdfContent.length() - 650;
+
+        assertEquals(encodeToString(pdfBytes).substring(0, comparisonRange), expectedPdfContent.substring(0, comparisonRange));
     }
 
 }
