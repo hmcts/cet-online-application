@@ -1,14 +1,13 @@
 package uk.gov.hmcts.reform.cet.document;
 
-import uk.gov.hmcts.reform.pdf.service.client.PDFServiceClient;
-
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -16,24 +15,22 @@ import org.springframework.util.ResourceUtils;
 @Service
 public class DocumentGenerator {
 
-    private static final String S2S_AUTH_TOKEN = "some-random-auth-token";
+    private static final Logger LOG = LoggerFactory.getLogger(DocumentGenerator.class);
+
+    @Autowired
+    private ClientFactory clientFactory;
 
     @Value("${pdf-service.writ-template-location}")
     private String writTemplateLocation;
 
-    @Value("${pdf-service.url}")
-    private String pdfServiceUrl;
-
     public byte[] generateWritDocument(Map<String, Object> templateData) {
         try {
             File templateFile = ResourceUtils.getFile(writTemplateLocation);
-            return PDFServiceClient.builder().build(() -> S2S_AUTH_TOKEN, new URI(pdfServiceUrl))
+            return clientFactory.createPdfServiceClient()
                     .generateFromHtml(Files.readAllBytes(templateFile.toPath()), templateData);
-        } catch (URISyntaxException | IOException exception) {
-            exception.printStackTrace();
+        } catch (IOException exception) {
+            LOG.error("There was a problem generating the writ document", exception);
         }
         return null;
     }
-
-
 }
