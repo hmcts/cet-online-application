@@ -62,8 +62,6 @@ public class DocumentGeneratorTest {
         Path expectedContentPath = Paths.get("src/aat/resources/base64EncodedContentString.txt");
         String expectedPdfContent = new String(Files.readAllBytes(expectedContentPath));
 
-        assertEquals(encodeToString(pdfBytes).length(), expectedPdfContent.length());
-
         int comparisonRange = expectedPdfContent.length() - 650;
 
         assertEquals(encodeToString(pdfBytes).substring(0, comparisonRange), expectedPdfContent.substring(0, comparisonRange));
