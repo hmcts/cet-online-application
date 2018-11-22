@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.cet.functional;
 
+import uk.gov.hmcts.reform.cet.document.ClientFactory;
 import uk.gov.hmcts.reform.cet.document.DocumentGenerator;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {DocumentGenerator.class})
+@ContextConfiguration(classes = {DocumentGenerator.class, ClientFactory.class})
 public class DocumentGeneratorTest {
 
     @Autowired
