@@ -1,16 +1,10 @@
 package uk.gov.hmcts.reform.cet.functional;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.springframework.util.Base64Utils.encodeToString;
 
 import uk.gov.hmcts.reform.cet.document.ClientFactory;
 import uk.gov.hmcts.reform.cet.document.DocumentGenerator;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +24,7 @@ public class DocumentGeneratorTest {
     private DocumentGenerator documentGenerator;
 
     @Test
-    public void shouldGenerateDocumentFromTemplate() throws IOException {
+    public void shouldGenerateDocumentFromTemplate() {
 
         Map<String, Object> templateData = new HashMap();
         templateData.put("claimantName", "Bob Smith");
@@ -58,13 +52,6 @@ public class DocumentGeneratorTest {
         byte[] pdfBytes = documentGenerator.generateWritDocument(templateData);
 
         assertNotNull(pdfBytes);
-
-        Path expectedContentPath = Paths.get("src/aat/resources/base64EncodedContentString.txt");
-        String expectedPdfContent = new String(Files.readAllBytes(expectedContentPath));
-
-        int comparisonRange = expectedPdfContent.length() - 650;
-
-        assertEquals(encodeToString(pdfBytes).substring(0, comparisonRange), expectedPdfContent.substring(0, comparisonRange));
     }
 
 }
