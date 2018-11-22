@@ -1,4 +1,6 @@
-package uk.gov.hmcts.reform.cet.document;
+package uk.gov.hmcts.reform.cet.functional;
+
+import uk.gov.hmcts.reform.cet.document.DocumentGenerator;
 
 import java.io.IOException;
 import java.nio.file.Files;
