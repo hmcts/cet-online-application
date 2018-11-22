@@ -35,7 +35,7 @@ public class ClientFactoryTest {
 
 
     @Test
-    public void shouldThrowExceptionWhenFileNotFound() {
+    public void shouldThrowExceptionGivenInvalidURI() {
         ReflectionTestUtils.setField(clientFactory, "pdfServiceUrl", "${invalid-url}");
 
         PDFServiceClient client = clientFactory.createPdfServiceClient();
