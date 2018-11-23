@@ -25,10 +25,10 @@ public class NotificationService {
     @Value("${gov-notify.template-id.test}")
     private String templateId;
 
-    public SendEmailResponse sendEmailNotification(String emailReference) throws NotificationClientException {
+    public SendEmailResponse sendEmailNotification(String emailAddress, String emailReference) throws NotificationClientException {
         LOG.info("sending email notification");
         return clientFactory.createNotificationClient()
-                .sendEmail(templateId, "taleb.benouaer@hmcts.net", new HashMap<>(), emailReference);
+                .sendEmail(templateId, emailAddress, new HashMap<>(), emailReference);
 
     }
 }

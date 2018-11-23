@@ -23,8 +23,9 @@ public class NotificationServiceTest {
     private NotificationService notificationService;
 
     @Test
-    public void shouldGenerateDocumentFromTemplate() throws NotificationClientException {
-        SendEmailResponse sendEmailResponse = notificationService.sendEmailNotification("cet-test-email-1234");
+    public void shouldSendEmailToRecipient() throws NotificationClientException {
+        SendEmailResponse sendEmailResponse = notificationService
+                .sendEmailNotification("civil.enforcement@outlook.com", "cet-test-email-1234");
 
         assertEquals("cet-test-email-1234", sendEmailResponse.getReference().get());
     }

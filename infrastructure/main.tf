@@ -59,9 +59,9 @@ module "app" {
     IDAM_API_URL = "${var.idam_api_url}"
     PDF_SERVICE_URL = "http://${var.pdf_service_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
     S2S_URL = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
-
     S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
     S2S_NAMES_WHITELIST = "${var.s2s_names_whitelist}"
+    GOV_NOTIFY_API_KEY = "${data.azurerm_key_vault_secret.gov_notify_api_key.value}"
 
     # logging vars & healthcheck
     REFORM_SERVICE_NAME = "${local.app_full_name}"
@@ -101,6 +101,11 @@ data "azurerm_key_vault" "shared_key_vault" {
 
 data "azurerm_key_vault_secret" "s2s_key" {
   name      = "microservicekey-cet"
+  vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
+}
+
+data "azurerm_key_vault_secret" "gov_notify_api_key" {
+  name = "gov-notify-api-key"
   vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
 }
 
@@ -148,5 +153,11 @@ resource "azurerm_key_vault_secret" "POSTGRES_DATABASE" {
 resource "azurerm_key_vault_secret" "S2S_KEY" {
   name = "${data.azurerm_key_vault_secret.s2s_key.name}"
   value = "${data.azurerm_key_vault_secret.s2s_key.value}"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
+}
+
+resource "azurerm_key_vault_secret" "GOV_NOTIFY_API_KEY" {
+  name = "${data.azurerm_key_vault_secret.gov_notify_api_key.name}"
+  value = "${data.azurerm_key_vault_secret.gov_notify_api_key.value}"
   vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
