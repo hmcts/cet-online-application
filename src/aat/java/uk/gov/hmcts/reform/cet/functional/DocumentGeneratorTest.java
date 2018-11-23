@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cet.functional;
 
 import static org.junit.Assert.assertNotNull;
 
-import uk.gov.hmcts.reform.cet.document.ClientFactory;
-import uk.gov.hmcts.reform.cet.document.DocumentGenerator;
+import uk.gov.hmcts.reform.cet.services.ClientFactory;
+import uk.gov.hmcts.reform.cet.services.DocumentGenerator;
 
 import java.util.HashMap;
 import java.util.Map;

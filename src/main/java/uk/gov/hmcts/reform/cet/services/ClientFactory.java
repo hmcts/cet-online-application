@@ -1,6 +1,7 @@
-package uk.gov.hmcts.reform.cet.document;
+package uk.gov.hmcts.reform.cet.services;
 
 import uk.gov.hmcts.reform.pdf.service.client.PDFServiceClient;
+import uk.gov.service.notify.NotificationClient;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -19,6 +20,9 @@ public class ClientFactory {
     @Value("${pdf-service.url}")
     private String pdfServiceUrl;
 
+    @Value("${gov-notify.api-key}")
+    private String apiKey;
+
     public PDFServiceClient createPdfServiceClient() {
         try {
             return PDFServiceClient.builder().build(() -> S2S_AUTH_TOKEN, new URI(pdfServiceUrl));
@@ -26,5 +30,9 @@ public class ClientFactory {
             LOG.error("There was a problem generating the writ document", exception);
             return null;
         }
+    }
+
+    public NotificationClient createNotificationClient() {
+        return new NotificationClient(apiKey);
     }
 }

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cet.document;
+package uk.gov.hmcts.reform.cet.services;
 
 import java.io.File;
 import java.io.IOException;
