@@ -104,11 +104,6 @@ data "azurerm_key_vault_secret" "s2s_key" {
   vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
 }
 
-data "azurerm_key_vault_secret" "gov_notify_api_key" {
-  name = "gov-notify-api-key"
-  vault_uri = "https://cet-online-app-prod.vault.azure.net/"
-}
-
 module "cet-online-app-vault" {
   source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
   name                = "${local.vaultName}"
@@ -118,6 +113,11 @@ module "cet-online-app-vault" {
   object_id           = "${var.jenkins_AAD_objectId}"
   resource_group_name = "${module.app.resource_group_name}"
   product_group_object_id = "33ed3c5a-bd38-4083-84e3-2ba17841e31e"
+}
+
+data "azurerm_key_vault_secret" "gov_notify_api_key" {
+  name = "gov-notify-api-key"
+  vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
 
 resource "azurerm_key_vault_secret" "POSTGRES-USER" {
