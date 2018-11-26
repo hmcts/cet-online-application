@@ -61,7 +61,7 @@ module "app" {
     S2S_URL = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
     S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
     S2S_NAMES_WHITELIST = "${var.s2s_names_whitelist}"
-    GOV_NOTIFY_API_KEY = "${data.azurerm_key_vault_secret.gov_notify_api_key.value}"
+    GOV_NOTIFY_API_KEY = "${module.app.gov_notify_api_key}"
 
     # logging vars & healthcheck
     REFORM_SERVICE_NAME = "${local.app_full_name}"
@@ -103,11 +103,11 @@ data "azurerm_key_vault_secret" "s2s_key" {
   name      = "microservicekey-cet"
   vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
 }
-
-data "azurerm_key_vault_secret" "gov_notify_api_key" {
-  name = "gov-notify-api-key"
-  vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
-}
+//
+//data "azurerm_key_vault_secret" "gov_notify_api_key" {
+//  name = "gov-notify-api-key"
+//  vault_uri = "https://s2s-${local.localenv}.vault.azure.net/"
+//}
 
 module "cet-online-app-vault" {
   source              = "git@github.com:hmcts/moj-module-key-vault?ref=master"
@@ -157,7 +157,7 @@ resource "azurerm_key_vault_secret" "S2S_KEY" {
 }
 
 resource "azurerm_key_vault_secret" "GOV_NOTIFY_API_KEY" {
-  name = "${data.azurerm_key_vault_secret.gov_notify_api_key.name}"
-  value = "${data.azurerm_key_vault_secret.gov_notify_api_key.value}"
+  name = "gov-notify-api-key"
+  value = "${module.app.gov_notify_api_key}"
   vault_uri = "${module.cet-online-app-vault.key_vault_uri}"
 }
