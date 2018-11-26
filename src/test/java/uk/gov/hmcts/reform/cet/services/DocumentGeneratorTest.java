@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cet.document;
+package uk.gov.hmcts.reform.cet.services;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;

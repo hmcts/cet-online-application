@@ -40,6 +40,11 @@ fee.api:
   channel: default
   event: miscellaneous
 
+gov-notify:
+  api-key: cettestkey-4c2bd129-5222-4d6a-8161-ff95447ad4dd-8d73775c-a09d-4b78-afdd-0a3e02f9a21e
+  template-id:
+    test: 0711d881-2fea-4fd0-8c7f-779d193bf965
+
 base-urls:
   idam-user: ${IDAM_API_URL:http://localhost:4501}
   idam-s2s: ${S2S_URL:http://localhost:4502}
