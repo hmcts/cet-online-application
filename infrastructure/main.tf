@@ -106,7 +106,7 @@ data "azurerm_key_vault_secret" "s2s_key" {
 
 data "azurerm_key_vault_secret" "gov_notify_api_key" {
   name = "gov-notify-api-key"
-  vault_uri = "https://cet-online-app-aat.vault.azure.net/"
+  vault_uri = "https://cet-online-app-prod.vault.azure.net/"
 }
 
 module "cet-online-app-vault" {
