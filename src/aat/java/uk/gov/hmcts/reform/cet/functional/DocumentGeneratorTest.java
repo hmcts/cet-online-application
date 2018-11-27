@@ -26,6 +26,12 @@ public class DocumentGeneratorTest {
     @Test
     public void shouldGenerateDocumentFromTemplate() {
 
+        byte[] pdfBytes = documentGenerator.generateWritDocument(getTemplateData());
+
+        assertNotNull(pdfBytes);
+    }
+
+    protected static Map<String, Object> getTemplateData() {
         Map<String, Object> templateData = new HashMap();
         templateData.put("claimantName", "Bob Smith");
         templateData.put("claimantAddress", "Eastside Street, London, UK");
@@ -47,11 +53,7 @@ public class DocumentGeneratorTest {
         templateData.put("claimReason", "Dart Charge");
         templateData.put("applicantName", "Wilkin Chapman LLP");
         templateData.put("applicantAddress", "Cartergate House, 26 Chantry Lane, Grimsby, DN3 1LJ");
-
-
-        byte[] pdfBytes = documentGenerator.generateWritDocument(templateData);
-
-        assertNotNull(pdfBytes);
+        return templateData;
     }
 
 }

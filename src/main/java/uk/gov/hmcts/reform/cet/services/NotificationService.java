@@ -1,8 +1,10 @@
 package uk.gov.hmcts.reform.cet.services;
 
+import uk.gov.service.notify.LetterResponse;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
 
+import java.io.File;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
@@ -29,6 +31,13 @@ public class NotificationService {
         LOG.info("sending email notification");
         return clientFactory.createNotificationClient()
                 .sendEmail(templateId, emailAddress, new HashMap<>(), emailReference);
+
+    }
+
+    public LetterResponse sendLetter(File letter, String letterReference) throws NotificationClientException {
+        LOG.info("sending letter notification");
+        return clientFactory.createLetterNotificationClient()
+                .sendPrecompiledLetter(letterReference, letter);
 
     }
 }

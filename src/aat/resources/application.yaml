@@ -33,6 +33,7 @@ pdf-service:
 
 gov-notify:
   api-key: ${GOV_NOTIFY_API_KEY:cettestkey-4c2bd129-5222-4d6a-8161-ff95447ad4dd-8d73775c-a09d-4b78-afdd-0a3e02f9a21e}
+  api-key-letters: send_letter_key-4c2bd129-5222-4d6a-8161-ff95447ad4dd-c6b3744e-fdd3-4820-85f4-5e10da9b0500
   template-id:
     test: 0711d881-2fea-4fd0-8c7f-779d193bf965
 

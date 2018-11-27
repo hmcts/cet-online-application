@@ -23,6 +23,9 @@ public class ClientFactory {
     @Value("${gov-notify.api-key}")
     private String apiKey;
 
+    @Value("${gov-notify.api-key-letters}")
+    private String apiKeyLetters;
+
     public PDFServiceClient createPdfServiceClient() {
         try {
             return PDFServiceClient.builder().build(() -> S2S_AUTH_TOKEN, new URI(pdfServiceUrl));
@@ -34,5 +37,9 @@ public class ClientFactory {
 
     public NotificationClient createNotificationClient() {
         return new NotificationClient(apiKey);
+    }
+
+    public NotificationClient createLetterNotificationClient() {
+        return new NotificationClient(apiKeyLetters);
     }
 }
