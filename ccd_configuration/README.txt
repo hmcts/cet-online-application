@@ -15,7 +15,7 @@ Steps 3.X should be temporary until the roles we need become part of Idam:
 3.1. Log into the idam database. This command will tell you which IP the CCD database is running:
 - docker container ls | grep compose_ccd-shared-database | cut -d ' ' -f1 | xargs docker inspect | grep IPAddress
 
-3.2. You should be able to connect to the database using username postgre, and no password
+3.2. You should be able to connect to the database using username postgres, and no password
 
 3.3 Go into the Idam database and insert the role we need for civil enforcement:
 - insert into public.role values('caseworker-ce', 'Civil Enforcement Case Worker')
