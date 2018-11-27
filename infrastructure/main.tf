@@ -20,7 +20,6 @@ locals {
   local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
   pdf_service_url = "http://${var.pdf_service_url}-${local.local_env}.service.${local.local_ase}.internal"
   s2s_url = "http://${var.s2s_url}-${local.local_env}.service.${local.local_ase}.internal"
-  fee_api_url = "http://fees-register-api-${local.local_env}.service.${local.local_ase}.internal"
 }
 
 module "app" {
@@ -63,7 +62,6 @@ module "app" {
     S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
     S2S_NAMES_WHITELIST = "${var.s2s_names_whitelist}"
     GOV_NOTIFY_API_KEY = "${data.azurerm_key_vault_secret.gov_notify_api_key.value}"
-    FEE_API_URL = "${local.fee_api_url}"
 
     # logging vars & healthcheck
     REFORM_SERVICE_NAME = "${local.app_full_name}"
