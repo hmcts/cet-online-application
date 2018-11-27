@@ -3,9 +3,11 @@ package uk.gov.hmcts.reform.cet.services;
 import uk.gov.service.notify.LetterResponse;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
+import uk.gov.service.notify.SendSmsResponse;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +26,30 @@ public class NotificationService {
     @Value("${gov-notify.api-key}")
     private String apiKey;
 
-    @Value("${gov-notify.template-id.test}")
-    private String templateId;
+    @Value("${gov-notify.template-id.email.test}")
+    private String emailTemplateId;
+
+    @Value("${gov-notify.template-id.sms.test}")
+    private String smsTemplateId;
 
     public SendEmailResponse sendEmailNotification(String emailAddress, String emailReference) throws NotificationClientException {
         LOG.info("sending email notification");
         return clientFactory.createNotificationClient()
-                .sendEmail(templateId, emailAddress, new HashMap<>(), emailReference);
+                .sendEmail(emailTemplateId, emailAddress, new HashMap<>(), emailReference);
 
     }
 
     public LetterResponse sendLetter(File letter, String letterReference) throws NotificationClientException {
         LOG.info("sending letter notification");
-        return clientFactory.createLetterNotificationClient()
+        return clientFactory.createNotificationClient()
                 .sendPrecompiledLetter(letterReference, letter);
+
+    }
+
+    public SendSmsResponse sendSms(String phoneNumber, Map<String, String> smsData, String reference) throws NotificationClientException {
+        LOG.info("sending SMS notification");
+        return clientFactory.createNotificationClient()
+                .sendSms(smsTemplateId, phoneNumber, smsData, reference);
 
     }
 }

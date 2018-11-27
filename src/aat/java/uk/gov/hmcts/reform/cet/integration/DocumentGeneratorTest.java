@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cet.functional;
+package uk.gov.hmcts.reform.cet.integration;
 
 import static org.junit.Assert.assertNotNull;
 

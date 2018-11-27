@@ -1,7 +1,7 @@
-package uk.gov.hmcts.reform.cet.functional;
+package uk.gov.hmcts.reform.cet.integration;
 
 import static org.junit.Assert.assertEquals;
-import static uk.gov.hmcts.reform.cet.functional.DocumentGeneratorTest.getTemplateData;
+import static uk.gov.hmcts.reform.cet.integration.DocumentGeneratorTest.getTemplateData;
 
 import uk.gov.hmcts.reform.cet.services.ClientFactory;
 import uk.gov.hmcts.reform.cet.services.DocumentGenerator;
@@ -9,10 +9,12 @@ import uk.gov.hmcts.reform.cet.services.NotificationService;
 import uk.gov.service.notify.LetterResponse;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
+import uk.gov.service.notify.SendSmsResponse;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.HashMap;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +39,14 @@ public class NotificationServiceTest {
                 .sendEmailNotification("civil.enforcement@outlook.com", "cet-test-email-1234");
 
         assertEquals("cet-test-email-1234", sendEmailResponse.getReference().get());
+    }
+
+    @Test
+    public void shouldSendSmsToRecipient() throws NotificationClientException {
+        SendSmsResponse sendSmsResponse = notificationService
+                .sendSms("07863445692", new HashMap<>(), "cet-test-sms-1234");
+
+        assertEquals("cet-test-sms-1234", sendSmsResponse.getReference().get());
     }
 
     @Test

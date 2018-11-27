@@ -41,10 +41,12 @@ fee.api:
   event: miscellaneous
 
 gov-notify:
-  api-key: cettestkey-4c2bd129-5222-4d6a-8161-ff95447ad4dd-8d73775c-a09d-4b78-afdd-0a3e02f9a21e
-  api-key-letters: send_letter_key-4c2bd129-5222-4d6a-8161-ff95447ad4dd-c6b3744e-fdd3-4820-85f4-5e10da9b0500
+  api-key: ${GOV_NOTIFY_API_KEY:cettestapikey-4c2bd129-5222-4d6a-8161-ff95447ad4dd-8d48f313-c0a7-43f4-9830-c13228a44872}
   template-id:
-    test: 0711d881-2fea-4fd0-8c7f-779d193bf965
+    email:
+      test: 0711d881-2fea-4fd0-8c7f-779d193bf965
+    sms:
+      test: 71eae03b-c0ee-4107-8d6d-d8b14a113909
 
 base-urls:
   idam-user: ${IDAM_API_URL:http://localhost:4501}
