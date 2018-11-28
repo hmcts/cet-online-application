@@ -112,7 +112,7 @@ module "cet-online-app-vault" {
   tenant_id           = "${var.tenant_id}"
   object_id           = "${var.jenkins_AAD_objectId}"
   resource_group_name = "${module.app.resource_group_name}"
-  product_group_object_id = "33ed3c5a-bd38-4083-84e3-2ba17841e31e"
+  product_group_object_id = "70de400b-4f47-4f25-a4f0-45e1ee4e4ae3"
 }
 
 data "azurerm_key_vault_secret" "gov_notify_api_key" {
