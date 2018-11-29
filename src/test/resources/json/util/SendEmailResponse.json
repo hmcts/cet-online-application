@@ -1,0 +1,16 @@
+{
+  "content":{
+    "body":"Testing Civil Enforcement steel thread integration with Gov.Notify",
+    "from_email":"civil.enforcement@notifications.service.gov.uk",
+    "subject":"Civil Enforcement steel thread integration test"
+  },
+  "id":"04df41df-7989-43d0-9e31-dd229d50c997",
+  "reference":"cet-test-email-1234",
+  "scheduled_for":"foo",
+  "template":{
+    "id":"0711d881-2fea-4fd0-8c7f-779d193bf965",
+    "uri":"https://api.notifications.service.gov.uk/services/4c2bd129-5222-4d6a-8161-ff95447ad4dd/templates/0711d881-2fea-4fd0-8c7f-779d193bf965",
+    "version":1
+  },
+  "uri":"https://api.notifications.service.gov.uk/v2/notifications/04df41df-7989-43d0-9e31-dd229d50c997"
+}
