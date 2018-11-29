@@ -5,7 +5,7 @@ import static uk.gov.hmcts.reform.cet.integration.DocumentGeneratorTest.getTempl
 
 import uk.gov.hmcts.reform.cet.services.ClientFactory;
 import uk.gov.hmcts.reform.cet.services.DocumentGenerator;
-import uk.gov.hmcts.reform.cet.services.NotificationService;
+import uk.gov.hmcts.reform.cet.service.NotificationService;
 import uk.gov.service.notify.LetterResponse;
 import uk.gov.service.notify.NotificationClientException;
 import uk.gov.service.notify.SendEmailResponse;
