@@ -1,0 +1,15 @@
+{
+  "content":{
+    "body":"Testing Civil Enforcement integration with Gov.Notify",
+    "from_number":"GOVUK"
+  },
+  "id":"83f209a6-ceaa-4045-ae3e-931fa77b20fb",
+  "reference":"cet-test-sms-1234",
+  "scheduled_for":null,
+  "template":{
+    "id":"71eae03b-c0ee-4107-8d6d-d8b14a113909",
+    "uri":"https://api.notifications.service.gov.uk/services/4c2bd129-5222-4d6a-8161-ff95447ad4dd/templates/71eae03b-c0ee-4107-8d6d-d8b14a113909",
+    "version":1
+  },
+  "uri":"https://api.notifications.service.gov.uk/v2/notifications/83f209a6-ceaa-4045-ae3e-931fa77b20fb"
+}
