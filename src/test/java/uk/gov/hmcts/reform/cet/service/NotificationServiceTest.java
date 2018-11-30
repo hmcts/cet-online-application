@@ -41,7 +41,7 @@ public class NotificationServiceTest {
         SendEmailResponse emailResponse = new SendEmailResponse(emailJsonResponse);
         when(clientFactory.createNotificationClient()).thenReturn(notificationClient);
         when(notificationClient.sendEmail(any(), anyString(), anyMap(), anyString())).thenReturn(emailResponse);
-        when(notificationClient.sendPrecompiledLetter(any(), any())).thenReturn(letterResponse);
+        when(notificationClient.sendPrecompiledLetter(anyString(), any(File.class))).thenReturn(letterResponse);
         when(notificationClient.sendSms(any(), anyString(), anyMap(), anyString())).thenReturn(smsResponse);
     }
 
