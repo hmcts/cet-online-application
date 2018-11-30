@@ -32,9 +32,8 @@ public class NotificationService {
 
     public SendEmailResponse sendEmailNotification(String emailAddress, String emailReference) throws NotificationClientException {
         LOG.info("sending email notification");
-        NotificationClient client =  clientFactory.createNotificationClient();
-        SendEmailResponse response = client.sendEmail(emailTemplateId, emailAddress, new HashMap<>(), emailReference);
-        return response;
+        return clientFactory.createNotificationClient()
+                .sendEmail(emailTemplateId, emailAddress, new HashMap<>(), emailReference);
     }
 
     public LetterResponse sendLetter(File letter, String letterReference) throws NotificationClientException {
