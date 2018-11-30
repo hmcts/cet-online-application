@@ -8,10 +8,9 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.cet.services.ClientFactory;
 import uk.gov.hmcts.reform.cet.utils.JsonUtils;
-import uk.gov.service.notify.NotificationClient;
-import uk.gov.service.notify.SendEmailResponse;
-import uk.gov.service.notify.SendSmsResponse;
+import uk.gov.service.notify.*;
 
+import java.io.File;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -35,12 +34,15 @@ public class NotificationServiceTest {
     @Before
     public void setUp() throws Exception {
         String emailJsonResponse = JsonUtils.getJsonInput("util/SendEmailResponse");
+        String letterJsonResponse = JsonUtils.getJsonInput("util/LetterResponse");
         String smsJsonResponse = JsonUtils.getJsonInput("util/SendSmsResponse");
         SendSmsResponse smsResponse = new SendSmsResponse(smsJsonResponse);
+        LetterResponse letterResponse = new LetterResponse(letterJsonResponse);
         SendEmailResponse emailResponse = new SendEmailResponse(emailJsonResponse);
         when(clientFactory.createNotificationClient()).thenReturn(notificationClient);
         when(notificationClient.sendEmail(any(), anyString(), anyMap(), anyString())).thenReturn(emailResponse);
-        when(notificationClient.sendSms(any(), any(), any(), any())).thenReturn(smsResponse);
+        when(notificationClient.sendPrecompiledLetter(any(), any())).thenReturn(letterResponse);
+        when(notificationClient.sendSms(any(), anyString(), anyMap(), anyString())).thenReturn(smsResponse);
     }
 
     @Test
@@ -58,7 +60,14 @@ public class NotificationServiceTest {
     }
 
     @Test
-    public void testsendSms() throws Exception {
+    public void testSendPrecompiledLetter() throws Exception {
+        LetterResponse response = notificationService.sendLetter( new File(""), "foo");
+        assertEquals("cet-test-letter-1234", response.getReference().get());
+        assertEquals("0711d881-2fea-4fd0-8c7f-779d193bf965", response.getNotificationId().toString());
+    }
+
+    @Test
+    public void testSendSms() throws Exception {
         // SendSmsResponse doesn't deserialize scheduled_for or uri fields
         SendSmsResponse response = notificationService.sendSms("foo", new HashMap(), "bar");
         assertEquals("Testing Civil Enforcement integration with Gov.Notify", response.getBody());
