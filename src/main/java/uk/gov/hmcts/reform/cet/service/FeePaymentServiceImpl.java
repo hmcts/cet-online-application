@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import uk.gov.hmcts.reform.cet.config.FeeServiceConfiguration;
 import uk.gov.hmcts.reform.cet.model.Fee;
 
 import java.net.URI;
@@ -14,23 +15,24 @@ import java.net.URI;
 @Slf4j
 public class FeePaymentServiceImpl implements FeePaymentService {
 
-
-    private String feeApiUrl = "http://localhost:4411/fees-register/fees/lookup";
+    @Autowired
+    private FeeServiceConfiguration configuration;
 
     @Autowired
     private RestTemplate restTemplate;
 
     @Override
-    public Fee getFee(String event) {
+    public Fee getFee() {
+        String feeApiUrl = configuration.getUrl() + configuration.getApi();
 
         log.debug("Getting fee from: " + feeApiUrl);
 
-        URI uri = UriComponentsBuilder.fromHttpUrl(feeApiUrl)
-                .queryParam("channel", "default")
-                .queryParam("event", "miscellaneous")
-                .queryParam("jurisdiction1", "civil")
-                .queryParam("jurisdiction2", "high court")
-                .queryParam("service", "civil money claims")
+        URI uri = UriComponentsBuilder.fromHttpUrl(configuration.getUrl() + configuration.getApi())
+                .queryParam("channel", configuration.getChannel())
+                .queryParam("event", configuration.getEvent())
+                .queryParam("jurisdiction1", configuration.getJurisdiction1())
+                .queryParam("jurisdiction2", configuration.getJurisdiction2())
+                .queryParam("service", configuration.getService())
                 .build().encode().toUri();
 
         ResponseEntity<Fee> feeResponse = restTemplate.getForEntity(uri, Fee.class);

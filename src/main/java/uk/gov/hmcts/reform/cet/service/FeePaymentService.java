@@ -4,6 +4,6 @@ import uk.gov.hmcts.reform.cet.model.Fee;
 
 public interface FeePaymentService {
 
-    Fee getFee(String request);
+    Fee getFee();
 
 }

@@ -72,6 +72,11 @@ variable "pdf_service_url" {
   default = "cmc-pdf-service"
 }
 
+variable "fee_api_url" {
+  type = "string"
+  default = ""
+}
+
 variable "s2s_url" {
   default = "rpe-service-auth-provider"
 }

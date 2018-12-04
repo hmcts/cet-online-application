@@ -20,6 +20,7 @@ locals {
   local_ase = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "core-compute-aat" : "core-compute-saat" : local.ase_name}"
   pdf_service_url = "http://${var.pdf_service_url}-${local.local_env}.service.${local.local_ase}.internal"
   s2s_url = "http://${var.s2s_url}-${local.local_env}.service.${local.local_ase}.internal"
+  fee_api_url = "${var.fee_api_url == "" ? "http://fees-register-api-${local.local_env}.service.core-compute-${local.local_env}.internal" : var.fee_api_url}"
 }
 
 module "app" {
@@ -78,6 +79,8 @@ module "app" {
     LOG_OUTPUT = "${var.log_output}"
 
     FORCE_CHANGE = "delete me"
+
+    FEE_API_URL = "${local.fee_api_url}"
   }
 }
 

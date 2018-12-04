@@ -38,3 +38,7 @@ output "spring_datasource_password" {
 output "test_s2s_secret" {
   value = "${data.azurerm_key_vault_secret.source_test_s2s_secret.value}"
 }
+
+output "fee_register_api_url" {
+  value = "http://fees-register-api-${local.local_env}.service.core-compute-${local.local_env}.internal"
+}
