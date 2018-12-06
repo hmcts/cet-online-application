@@ -28,13 +28,13 @@ public class FeePaymentServiceImplTest {
 
     @Before
     public void setUp() {
-        Fee fee = Fee.builder().code("foo").fee_amount(1).description("bar").version(1).build();
+        Fee fee = Fee.builder().code("foo").fee_amount("1").description("bar").version(1).build();
         ResponseEntity<Fee> responseEntity = new ResponseEntity<>(fee, HttpStatus.OK);
         when(restTemplate.getForEntity(any(URI.class), any(Class.class))).thenReturn(responseEntity);
     }
     @Test
     public void testGetFee() {
-        Fee fee = feePaymentService.getFee("");
+        Fee fee = feePaymentService.getFee();
         assertEquals("foo", fee.getCode());
         assertEquals(1, fee.getVersion());
         assertEquals("bar", fee.getDescription());
