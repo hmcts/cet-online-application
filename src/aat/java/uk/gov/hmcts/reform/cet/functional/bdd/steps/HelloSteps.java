@@ -34,8 +34,19 @@ public class HelloSteps extends BaseSteps {
         testContext.getHttpContext().setResponseBodyAndStatesForResponse(response);
     }
 
+    @When("^a (.*) request is sent to fee")
+    public void aRequestIsSentToFee(String method) {
+        ResponseEntity response = sendRequest(baseUrl + "/fee", method, "");
+        testContext.getHttpContext().setResponseBodyAndStatesForResponse(response);
+    }
+
     @Then("^the response code is (\\d+)$")
     public void the_response_code_is(int responseCode) {
         assertEquals("Response status code", responseCode, testContext.getHttpContext().getHttpResponseStatusCode());
+    }
+
+    @Then("^the fee is (.*+)$")
+    public void the_response_code_is(String fee) {
+        assertEquals("Content", fee, testContext.getHttpContext().getRawResponseString());
     }
 }
