@@ -31,11 +31,8 @@ pdf-service:
   url: ${PDF_SERVICE_URL:http://localhost:5500}
   writ-template-location: classpath:templates/writ-control-example-template.html
 
-coh:
-  url: ${COH_URL:http://localhost:8081}
-
 fee.api:
-  url: http://fees-api:8080
+  url: ${FEE_API_URL:http://fees-api:8080}
   api: /fees-register/fees/lookup
   service: civil money claims
   jurisdiction1: civil
