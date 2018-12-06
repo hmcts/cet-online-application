@@ -6,13 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.cet.config.FeeServiceConfiguration;
 import uk.gov.hmcts.reform.cet.model.Fee;
 import uk.gov.hmcts.reform.cet.service.FeePaymentService;
-import uk.gov.hmcts.reform.cet.service.FeePaymentServiceClient;
 
 @RestController
 @RequestMapping("/fee")
 public class FeeServiceController {
-
-    private FeePaymentServiceClient feePaymentServiceClient;
 
     @Autowired
     private FeeServiceConfiguration configuration;
