@@ -5,10 +5,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
+import uk.gov.hmcts.reform.cet.config.FeeServiceConfiguration;
 import uk.gov.hmcts.reform.cet.model.Fee;
 
 import java.net.URI;
@@ -21,6 +24,9 @@ import static org.mockito.Mockito.when;
 public class FeePaymentServiceImplTest {
 
     @Mock
+    private FeeServiceConfiguration configuration;
+
+    @Mock
     private RestTemplate restTemplate;
 
     @InjectMocks
@@ -31,6 +37,8 @@ public class FeePaymentServiceImplTest {
         Fee fee = Fee.builder().code("foo").fee_amount("1").description("bar").version(1).build();
         ResponseEntity<Fee> responseEntity = new ResponseEntity<>(fee, HttpStatus.OK);
         when(restTemplate.getForEntity(any(URI.class), any(Class.class))).thenReturn(responseEntity);
+        when(configuration.getUrl()).thenReturn("http://localhost");
+        when(configuration.getApi()).thenReturn("/foo");
     }
     @Test
     public void testGetFee() {
