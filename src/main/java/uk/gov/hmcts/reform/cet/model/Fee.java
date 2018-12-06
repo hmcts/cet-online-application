@@ -9,7 +9,7 @@ public class Fee {
 
     String code;
 
-    double fee_amount;
+    String fee_amount;
 
     int  version;
 
