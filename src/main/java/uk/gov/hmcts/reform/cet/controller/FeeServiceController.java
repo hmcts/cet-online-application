@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.cet.config.FeeServiceConfiguration;
 import uk.gov.hmcts.reform.cet.model.Fee;
-import uk.gov.hmcts.reform.cet.service.FeePaymentService;
 import uk.gov.hmcts.reform.cet.service.FeePaymentServiceClient;
 
 @RestController
@@ -14,9 +13,6 @@ public class FeeServiceController {
 
     @Autowired
     private FeeServiceConfiguration configuration;
-
-    @Autowired
-    private FeePaymentService feePaymentService;
 
     @Autowired
     private FeePaymentServiceClient client;
