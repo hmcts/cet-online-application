@@ -11,5 +11,5 @@ public class HelloController {
     public String greet() {
         return "Greetings from Civil Enforcement!";
     }
-    
+
 }
