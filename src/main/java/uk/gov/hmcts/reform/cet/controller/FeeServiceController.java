@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.cet.config.FeeServiceConfiguration;
 import uk.gov.hmcts.reform.cet.model.Fee;
 import uk.gov.hmcts.reform.cet.service.FeePaymentService;
+import uk.gov.hmcts.reform.cet.service.FeePaymentServiceClient;
 
 @RestController
 @RequestMapping("/fee")
@@ -17,11 +18,19 @@ public class FeeServiceController {
     @Autowired
     private FeePaymentService feePaymentService;
 
+    @Autowired
+    private FeePaymentServiceClient client;
+
     @RequestMapping("")
     public String getFee() {
-        Fee fee = feePaymentService.getFee();
-        return fee.getFee_amount();
+        Fee clientFee = client.getFee(configuration.getService(),
+                configuration.getJurisdiction1(),
+                configuration.getJurisdiction2(),
+                configuration.getChannel(),
+                configuration.getEvent());
+
+        return clientFee.getFee_amount();
     }
 
-    
+
 }
