@@ -96,7 +96,7 @@ auth:
 
 authorization:
   roles: ${AUTHORIZATION_ROLES:solicitor,citizen}
-  s2s-names-whitelist: ${S2S_NAMES_WHITELIST:jui_webapp,sscs,divorce,ccd,em_gw}
+  s2s-names-whitelist: ${S2S_NAMES_WHITELIST:jui_webapp,sscs,divorce,ccd,em_gw,cet_frontend}
 
 info:
   app:
