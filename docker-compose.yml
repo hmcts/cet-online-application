@@ -47,8 +47,6 @@ services:
     - https_proxy
     - no_proxy
     #      logging env vars
-    - ROOT_APPENDER=JSON_CONSOLE
-    - JSON_CONSOLE_PRETTY_PRINT=false
     - REFORM_SERVICE_TYPE=java
     - REFORM_SERVICE_NAME=idam-api
     - REFORM_TEAM=cc
@@ -85,8 +83,6 @@ services:
     - MICROSERVICEKEYS_CCD_DEFINITION=AAAAAAAAAAAAAAAA
     - MICROSERVICEKEYS_CET_ONLINEAPP=AAAAAAAAAAAAAAAA
     #      logging env vars
-    - ROOT_APPENDER=JSON_CONSOLE
-    - JSON_CONSOLE_PRETTY_PRINT=false
     - REFORM_SERVICE_TYPE=java
     - REFORM_SERVICE_NAME=service-auth-provider-app
     - REFORM_TEAM=rpe
@@ -112,8 +108,6 @@ services:
       - S2S_URL=http://service-auth-provider-app:8489
       - APPINSIGHTS_INSTRUMENTATIONKEY=test_app
     # these environment variables are used by java-logging library
-      - ROOT_APPENDER=JSON_CONSOLE
-      - JSON_CONSOLE_PRETTY_PRINT=false
       - ROOT_LOGGING_LEVEL
       - REFORM_SERVICE_TYPE=java
       - REFORM_SERVICE_NAME=cet-onlineapp
@@ -144,7 +138,6 @@ services:
     - SPRING_DATASOURCE_PASSWORD=fees_register
     - SPRING_PROFILES_ACTIVE=embedded
     #- AUTH_IDAM_CLIENT_BASEURL=http://idam-api:8080
-    - ROOT_APPENDER=JSON_CONSOLE
     ports:
     - 0.0.0.0:4411:8080/tcp
     links:
@@ -165,8 +158,6 @@ services:
     environment:
     - JAVA_OPTS=-Xms8m -Xmx256m -Djava.security.egd=file:/dev/./urandom -XX:MaxMetaspaceSize=128m
     - S2S_URL=http://service-auth-provider-api:8080
-    - ROOT_APPENDER
-    - JSON_CONSOLE_PRETTY_PRINT
     - ROOT_LOGGING_LEVEL
     - REFORM_SERVICE_NAME=pdf-service
     - REFORM_TEAM
