@@ -105,7 +105,8 @@ public class BaseSteps {
 
     private void findIdamUserIdByEmail() {
         String usersUri = UriComponentsBuilder.fromUriString(idamUrl)
-            .path("/testing-support/accounts/" + idamEmail)
+            .path("/users")
+            .queryParam("email", idamEmail)
             .toUriString();
 
         withValidHttpCodes(
